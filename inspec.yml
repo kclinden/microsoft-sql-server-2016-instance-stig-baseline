@@ -1,0 +1,234 @@
+name: MS_SQL_Server_2016_Instance_STIG
+title: MS SQL Server 2016 Instance Security Technical Implementation Guide
+maintainer: Kasey Linden
+copyright: N/A
+copyright_email: N/A
+license: Apache-2.0
+summary: "This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil."
+version: 0.1.0
+
+inputs:
+  - name: user
+    description: 'username MSSQL DB Server'
+    value: null
+
+  - name: password
+    description: 'password MSSQL DB Server'
+    value: null
+
+  - name: host
+    description: 'hostname MSSQL DB Server'
+    value: null
+
+  - name: instance
+    description: 'instance name MSSQL DB Server'
+    value: null
+
+  - name: port
+    description: 'port MSSQL DB Server'
+    type: numeric
+    value: 1433
+
+  - name: db_name
+    description: 'name of the specific DB being evaluated within the MSSQL server'
+    type: string
+    value: 'master'
+
+  - name: server_trace_implemented
+    description: 'Set to true If SQL Server Trace is in use for audit purposes'
+    type: boolean
+    value: true
+
+  - name: server_audit_implemented
+    description: 'Set to true If SQL Server Audit is in use for audit purposes'
+    type: boolean
+    value: true
+
+  - name: sql_server_reporting_services_used
+    description: 'Set to true if SQL Server Reporting Services is in use'
+    type: boolean
+    value: false
+
+  - name: sql_server_data_tools_required 
+    description: 'Set to true if SQL Server data tools is required'
+    type: boolean
+    value: false
+
+  - name: sql_server_integration_services_used
+    description: 'Set to true if SQL Server Integration Services is in use'
+    type: boolean
+    value: false
+
+  - name: sql_server_analysis_services_used
+    description: 'Set to true if SQL Server analysis Services is in use'
+    type: boolean
+    value: false
+
+  - name: sql_server_distributed_replay_client_used
+    description: 'Set to true if SQL Server Distributed Replay Client is in use'
+    type: boolean
+    value: false
+  
+  - name: sql_server_distributed_replay_controller_used
+    description: 'Set to true if SQL Server Distributed Replay Controller is in use'
+    type: boolean
+    value: false
+
+  - name: sql_server_full_text_search_used
+    description: 'Set to true if SQL Server full-text search is in use'
+    type: boolean
+    value: false
+
+  - name: master_data_services_used
+    description: 'Set to true if master data services is in use'
+    type: boolean
+    value: false
+
+  - name: data_quality_client_used
+    description: 'Set to true if data quality client is in use'
+    type: boolean
+    value: false
+
+  - name: data_quality_services_used
+    description: 'Set to true if data quality services is in use'
+    type: boolean
+    value: false
+
+  - name: data_quality_services_used
+    description: 'Set to true if data quality services is in use'
+    type: boolean
+    value: false
+
+  - name: client_tools_sdk_used
+    description: 'Set to true if client tools sdk is in use'
+    type: boolean
+    value: false
+
+  - name: sql_mgmt_tools_used
+    description: 'Set to true if sql server management tools is in use'
+    type: boolean
+    value: false
+
+  - name: sql_mgmt_tools_used
+    description: 'Set to true if xp_cmdhsell is required'
+    type: boolean
+    value: false
+
+  - name: server_instance
+    description: 'instance name MSSQL DB Server'
+    value: 'WIN-FC4ANINFUFP'
+
+  - name: approved_audit_maintainers
+    description: 'List of users with permissions - ALTER TRACE, CREATE TRACE EVENT NOTIFICATION'
+    type: array
+    value: []
+
+  - name: allowed_audit_permissions
+    description: 'List of users with audit permissions - ALTER ANY SERVER AUDIT, CONTROL SERVER, ALTER ANY DATABASE, CREATE ANY DATABASE'
+    type: array
+    value: []
+
+  - name: allowed_sql_alter_permissions
+    description: 'List of user with permissions -  ALTER ANY SERVER AUDIT, ALTER ANYDATABASE AUDIT, ALTER TRACE; or EXECUTE'
+    type: array
+    value: []
+
+  - name: approved_users_sql_audits
+    description: 'List of approved users with access to SQL Server Audits'
+    type: array
+    value: []
+
+
+  - name: approved_users_server
+    description: 'List of sql server users with permissions - alter, create, control'
+    type: array
+    value: []
+
+
+  - name: approved_users_database
+    description: 'List of sql database users with permissions - alter, create, control'
+    type: array
+    value: []
+
+  - name: sql_components
+    description: 'List of sql components installed'
+    type: array
+    value: []
+
+  - name: authorized_protocols
+    description: 'List of authorized network protocols for the SQL server'
+    type: array
+    value: ["Shared Memory",
+            "TCP/IP"]
+
+  - name: authorized_ports
+    description: 'LList of authorized network ports for the SQL server'
+    type: array
+    value: ["1433"]      
+
+  - name: authorized_ports_name
+    description: 'List of authorized network port names for the SQL server'
+    type: array
+    value: ["TcpPort",
+            "TcpDynamicPorts"]  
+
+  - name: authorized_sql_users
+    description: 'List of authorized users for the SQL server'
+    type: array
+    value: []
+
+  - name: allowed_users_priv_functions
+    description: 'List of users allowed to execute privileged functions - create, alter, delete'
+    type: array
+    value: []
+
+  - name: allowed_server_permissions
+    description: 'List of allowed server permissions'
+    type: array
+    value: []
+
+  - name: allowed_database_permissions
+    description: 'List of allowed database permissions'
+    type: array
+    value: []
+
+
+  - name: encrypted_databases
+    description: 'List of Databases that require encryption'
+    type: array
+    value: ['EmpData']
+
+  - name: data_at_rest_encryption_required
+    description: 'Set to true if data at rest encryption is required'
+    type: boolean
+    value: false
+
+  - name: full_disk_encryption_inplace
+    description: 'Set to true if full disk encryption is in place'
+    type: boolean
+    value: false
+
+  - name: allowed_users
+    description: 'List of user allowed to execute privileged functions'
+    type: array
+    value: []
+
+  - name: is_xp_cmdshell_required
+    description: 'Set to true xp cmdshell is required'
+    type: boolean
+    value: false
+
+  - name: sql_managed_accounts
+    description: 'List of accounts managed by the sql server'
+    type: array
+    value: []
+
+  - name: filestream_required
+    description: 'Set to true if filestream is required'
+    type: boolean
+    value: false
+
+  - name: filestream_transact_access_only_required
+    description: 'Set to true if filestream transact access is required'
+    type: boolean
+    value: false
