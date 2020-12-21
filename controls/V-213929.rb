@@ -100,5 +100,25 @@ concurrent session limit.'
   tag fix_id: 'F-15144r313571_fix'
   tag cci: ['SV-93825', 'V-79119', 'CCI-000054']
   tag nist: ['AC-10']
+
+  query = %(
+    SELECT name FROM master.sys.server_triggers WHERE is_disabled = 0
+  )
+  sql_session = mssql_session(user: input('user'),
+                              password: input('password'),
+                              host: input('host'),
+                              instance: input('instance'),
+                              port: input('port'),
+                              db_name: input('db_name'))
+
+  describe 'Audited Result for Defined Audit Actions' do
+    subject { sql_session.query(query).column('name').uniq }
+    it { should_not be_empty }
+  end
+
+  describe 'This test currently has no automated tests, you must check manually' do
+    skip 'A manual review of the triggers should be performed to determine whether any of them limit the number of concurrent sessions per user'
+  end
+
 end
 
