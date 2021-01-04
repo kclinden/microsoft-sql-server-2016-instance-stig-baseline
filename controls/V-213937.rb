@@ -130,5 +130,10 @@ permissions from logins that do not need them.
   tag fix_id: 'F-15152r313595_fix'
   tag cci: ['SV-93841', 'V-79135', 'CCI-000171']
   tag nist: ['AU-12 b']
+
+  describe 'SQL Server must allow only the ISSM (or individuals or roles appointed by the ISSM) to select which auditable events are to be audited.' do
+    skip 'This control is manual'
+  end
+  
 end
 
