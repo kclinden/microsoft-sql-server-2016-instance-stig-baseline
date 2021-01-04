@@ -61,5 +61,10 @@ the login is \"CONTOSO\\user1$\", the username is \"user1\".
   tag fix_id: 'F-15150r313589_fix'
   tag cci: ['SV-93837', 'V-79131', 'CCI-000166']
   tag nist: ['AU-10']
+
+  describe 'SQL Server must protect against a user falsely repudiating by ensuring only clearly unique Active Directory user accounts can connect to the instance.' do
+    skip 'This controls is manual'
+  end
+  
 end
 
