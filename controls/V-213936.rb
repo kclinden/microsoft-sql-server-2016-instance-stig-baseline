@@ -75,5 +75,10 @@ specification server documentation."
   tag fix_id: 'F-15151r313592_fix'
   tag cci: ['SV-93839', 'V-79133', 'CCI-000169']
   tag nist: ['AU-12 a']
+
+  describe 'SQL Server must be configured to generate audit records for DoD-defined auditable events within all DBMS/database components.' do
+    skip 'This control is manual'
+  end
+
 end
 
