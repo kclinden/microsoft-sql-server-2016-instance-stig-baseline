@@ -87,5 +87,10 @@ of the service or a domain service account.
   tag fix_id: 'F-15149r313586_fix'
   tag cci: ['V-79129', 'SV-93835', 'CCI-000166']
   tag nist: ['AU-10']
+
+  describe 'SQL Server must protect against a user falsely repudiating by ensuring the NT AUTHORITY SYSTEM account is not used for administration.' do
+    skip 'This controls is manual'
+  end
+
 end
 
