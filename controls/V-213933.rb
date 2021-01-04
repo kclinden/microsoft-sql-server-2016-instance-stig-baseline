@@ -77,5 +77,10 @@ to the fewest persons possible.
   tag fix_id: 'F-15148r313583_fix'
   tag cci: ['V-79127', 'SV-93833', 'CCI-000166']
   tag nist: ['AU-10']
+
+  describe 'SQL Server must protect against a user falsely repudiating by ensuring all accounts are individual, unique, and not shared.' do
+    skip 'This controls is manual'
+  end
+
 end
 

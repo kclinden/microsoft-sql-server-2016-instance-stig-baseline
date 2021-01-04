@@ -1,0 +1,6 @@
+---
+user: "administrator"
+password: "VMware1!"
+host: "192.168.1.120"
+instance: "MSSQLSERVER"
+port: "1433"

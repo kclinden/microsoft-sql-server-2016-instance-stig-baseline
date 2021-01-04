@@ -137,5 +137,45 @@ User(s) unless still needed.
   tag fix_id: 'F-15145r313574_fix'
   tag cci: ['V-79121', 'SV-93827', 'CCI-000015']
   tag nist: ['AC-2 (1)']
+
+  sql_managed_accounts = input('sql_managed_accounts')
+
+  query = %(
+    SELECT
+        name
+    FROM
+        sys.sql_logins
+    WHERE
+        type_desc = 'SQL_LOGIN'
+        AND is_disabled = 0;
+  )
+  
+  sql_session = mssql_session(user: input('user'),
+                              password: input('password'),
+                              host: input('host'),
+                              instance: input('instance'),
+                              port: input('port'))
+
+  account_list = sql_session.query(query).column('name')
+  
+  describe registry_key("HKEY_LOCAL_MACHINE\\Software\\Microsoft\\Microsoft SQL Server\\MSSQL12.MSSQLSERVER\\MSSQLServer") do
+    its('LoginMode') { should eq 1 }
+    end
+
+  if account_list.empty?
+    impact 0.0
+    desc 'There are no sql managed accounts, control not applicable'
+
+    describe 'There are no sql managed accounts, control not applicable' do
+      skip 'There are no sql managed accounts, control not applicable'
+    end
+  else
+    account_list.each do |account|
+      describe "sql managed account: #{account}" do
+        subject { account }
+        it { should be_in sql_managed_accounts }
+      end
+    end
+  end
 end
 

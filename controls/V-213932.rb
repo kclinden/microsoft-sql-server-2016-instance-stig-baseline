@@ -58,5 +58,10 @@ documented requirements."
   tag fix_id: 'F-15147r313580_fix'
   tag cci: ['V-79125', 'SV-93831', 'CCI-000213']
   tag nist: ['AC-3']
+
+  describe 'SQL Server must enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies.' do
+    skip 'This control is manual'
+  end
+
 end
 
